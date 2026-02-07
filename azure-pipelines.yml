@@ -1,0 +1,17 @@
+# Simple Azure Pipeline for Node.js app
+# This pipeline runs on Azure DevOps when code is pushed to GitHub
+
+trigger:
+  - main  # Trigger on pushes to main branch
+
+pool:
+  vmImage: 'ubuntu-latest'  # Use Ubuntu agent
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.x'  # Install Node.js 18
+    displayName: 'Install Node.js'
+
+  - script: npm install
+    displayName: 'Install dependencies'
